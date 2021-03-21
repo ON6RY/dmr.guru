@@ -7,5 +7,5 @@ Back to the roots ...
 
 ## Install an Hytera Gateway Node ##
 ```console
-curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/hytera_node_install.sh | sudo bash
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/hytera_node_install.sh | sudo MASTER_PWD="whatthefuck" bash
 ```

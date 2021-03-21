@@ -28,7 +28,6 @@ rungnomon "python3 -m pip install hytera-homebrew-bridge --upgrade"
 say "Add hytera system user & create direcotry & Generate settings"
 run "useradd -r hytera && mkdir -p /opt/guru-hytera-node"
 
-UUID=$(cat /proc/sys/kernel/random/uuid)
 cat <<EOF > /opt/guru-hytera-node/settings.ini
 # Hytera IPSC configuration
 [ip-site-connect]
@@ -43,7 +42,7 @@ protocol=mmdvm
 local_ip = 0.0.0.0
 master_ip = 10.132.0.6
 master_port = 62030
-password = ${UUID}
+password = ${MASTER_PWD}
 EOF
 
 say "Generate systemd service file"
