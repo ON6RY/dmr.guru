@@ -22,6 +22,9 @@ say "Installing Prerequisites"
 run "apt -y update && apt -y upgrade && apt -y install git npm python3-pip python3-wheel python3-setuptools python3-setuptools-git"
 run "npm --loglevel=error install -g gnomon"
 
+say "Add hblink system user"
+run "useradd -r hblink"
+
 say "Installing HBLink3"
 run "mkdir -p /opt/"
 run "cd /opt"

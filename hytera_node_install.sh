@@ -57,6 +57,8 @@ Type=simple
 Environment=HOME=/opt/guru-hytera-node
 WorkingDirectory=/opt/guru-hytera-node
 
+User=hytera
+
 Nice=1
 TimeoutSec=300
 
