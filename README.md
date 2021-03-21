@@ -16,3 +16,7 @@ Just fill in the MASTER_PWD (generaterd above) and IP  and PORT of your system
 ```console
 curl -sL https://git.io/Jm56L | sudo MASTER_PWD="" MASTER_IP="" MASTER_PORT="" bash
 ```
+
+## TODO ##
+- ADD Public Monitor
+- ADD Hotspots (all the same password for now)
