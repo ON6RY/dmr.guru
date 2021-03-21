@@ -25,9 +25,10 @@ run "npm --loglevel=error install -g gnomon"
 say "Installing HBLink3"
 run "mkdir -p /opt/"
 run "cd /opt"
+run "rm -fr hblink3 > /dev/null 2>&1"
 run "git clone https://github.com/HBLink-org/hblink3.git"
 run "cd hblink3"
-run "python3 -m pip install -r requirements.txt --upgrade"
+rungnomon "python3 -m pip install -r requirements.txt --upgrade"
 
 say "Generate hblink.cfg"
 cat <<EOF > hblink.cfg
@@ -369,3 +370,32 @@ if __name__ == '__main__':
     pprint(BRIDGES)
     print(UNIT)
 EOF
+
+say "Generate systemd service file"
+cat <<EOF > /etc/systemd/system/hblink3-bridge.service
+[Unit]
+Description=hblink3 bridge service
+Wants=network.target
+After=network.target
+
+[Service]
+Type=simple
+Environment=HOME=/opt/hblink3
+WorkingDirectory=/opt/hblink3
+
+Nice=1
+TimeoutSec=300
+
+ExecStart=pyhton3 bridge.py
+
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+say "Configure systemd"
+run "systemctl daemon-reload"
+run "systemctl enable hblink3-bridge"
+run "systemctl restart hblink3-bridge"
