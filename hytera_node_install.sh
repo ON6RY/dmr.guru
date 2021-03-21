@@ -40,8 +40,8 @@ rdac_port = 50002
 [homebrew]
 protocol=mmdvm
 local_ip = 0.0.0.0
-master_ip = 10.132.0.6
-master_port = 62030
+master_ip = ${MASTER_IP}
+master_port = ${MASTER_PORT}
 password = ${MASTER_PWD}
 EOF
 
