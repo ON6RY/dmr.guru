@@ -374,12 +374,17 @@ if __name__ == '__main__':
     print(UNIT)
 EOF
 
+say "Chown hblink"
+run "chown -R hblink /opt/hblink3"
+
 say "Generate systemd service file"
 cat <<EOF > /etc/systemd/system/hblink3-bridge.service
 [Unit]
 Description=hblink3 bridge service
 Wants=network.target
 After=network.target
+
+User=hblink
 
 [Service]
 Type=simple
@@ -389,7 +394,7 @@ WorkingDirectory=/opt/hblink3
 Nice=1
 TimeoutSec=300
 
-ExecStart=pyhton3 bridge.py
+ExecStart=/usr/bin/python3 bridge.py
 
 Restart=always
 RestartSec=10
