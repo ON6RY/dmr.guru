@@ -18,4 +18,4 @@ curl -sL https://git.io/Jm56L | sudo MASTER_PWD="" MASTER_IP="" MASTER_PORT="" b
 ```
 
 ## Monitor ##
-(https://github.com/on3ure/HBMonv2)[Github]
+https://github.com/on3ure/HBMonv2
