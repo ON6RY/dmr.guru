@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Keeps only unique last heards to clean & speed up dashboard
+
+DATE=$(date +"%Y-%m-%d")
+
+mv /opt/HBMonv2/log/lastheard.log /opt/HBMonv2/log/lastheard.log.save
+cat /opt/HBMonv2/log/lastheard.log.save | awk -F , '!seen[$11]++' > /opt/HBMonv2/log/lastheard.log
+
+mv /opt/HBMonv2/log/lastheard.log.save /opt/HBMonv2/log/lastheard.log.${DATE}
+xz /opt/HBMonv2/log/lastheard.log.${DATE}
+
+mv /opt/HBMonv2/log/hbmon.log /opt/HBMonv2/log/hbmon.log.${DATE}
+xz /opt/HBMonv2/log/hbmon.log.${DATE}
+
+/usr/bin/systemctl restart hbmon
