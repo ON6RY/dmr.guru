@@ -22,7 +22,7 @@ say "Installing Prerequisites"
 
 run "apt -y update && apt -y upgrade && apt -y install git npm python3-pip python3-wheel python3-setuptools python3-setuptools-git cpanminus libpcap-dev"
 run "npm --loglevel=error install -g gnomon"
-run "cpanm -n -f Net::Pcap::Easy"
+run "cpanm -n -f Net::Pcap::Easy File::Touch"
 
 say "Installing Hytera Hombrew (takes a long time to build!)"
 rungnomon "python3 -m pip install hytera-homebrew-bridge --upgrade"
@@ -82,8 +82,8 @@ cat <<EOF > /opt/guru-hytera-node/check_last_heard
 #!/bin/bash
 
 FILE=/tmp/last_heard
-if [[ -f "${FILE}" ]]; then
-    if test "$(find ${FILE} -mmin +5)"; then
+if [[ -f "\${FILE}" ]]; then
+    if test "\$(find \${FILE} -mmin +5)"; then
 	    /usr/bin/systemctl restart hytera
 	    rm /tmp/last_heard
     fi
