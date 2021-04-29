@@ -19,7 +19,7 @@ say () {
 }
 
 say "Installing Prerequisites"
-run "apt -y update && apt -y upgrade && apt -y install git npm python3-pip python3-wheel python3-setuptools python3-setuptools-git"
+run "apt -y update && apt -y upgrade && apt -y install git npm python3-pip python3-wheel python3-setuptools python3-setuptools-git netcat wget"
 run "npm --loglevel=error install -g gnomon"
 
 say "Add hblink system user"
