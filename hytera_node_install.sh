@@ -93,6 +93,7 @@ run "chmod +x /opt/guru-hytera-node/check_last_heard"
 
 say "Install last heard check crontab"
 (crontab -l 2>/dev/null && echo "*/5 * * * * /opt/guru-hytera-node/check_last_heard") | crontab -
+(crontab -l 2>/dev/null && echo "0 3 * * * /usr/bin/systemctl restart hytera") | crontab -
 crontab -l 2>/dev/null | sort | grep -v "#" | uniq | crontab -
 run "crontab -l 2>/dev/null"
 
