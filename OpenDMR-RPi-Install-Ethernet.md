@@ -1,4 +1,4 @@
-# Open DMR System #
+# Open DMR Hytera -> MMDVM Raspberry PI Ethernet Node #
 
 ### Why ###
 Easy install a Hytera ISPC -> MMDVM node
