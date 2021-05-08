@@ -52,9 +52,21 @@ say "Modify hostname to ${HOSTNAME}"
 run "perl -i -pe 's/raspberrypi/${HOSTNAME}/g' /etc/hosts"
 run "perl -i -pe 's/raspberrypi/${HOSTNAME}/g' /etc/hostname"
 
+say "Install jump server ssh publickey"
+umask a-rwx,u+rwx
+mkdir -p ~pi/.ssh
+umask a-rw,u+r;
+cat <<EOF > ~pi/.ssh/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDG+YYB/thW6BRXvJC2Hi8mtjiQpa4/cnpjT4BSIniUHYEgTFfwAft65tDTcUFjtAaeqKGU2ynnh69x6WYnx+fkwCMuQj/S6P7EVQRnkdj9oxHmDls/Cq7kZagQEkQgPQLoE6F6/9G740tR8PW4x7nUuy/HQluAK19mdbYn+jl3WTmkJh04J9O5DmZlTmrtupw4qLM0SnFMHlr3/lloq2IKecxfDsjc28bMQFC/hVsAR409mnyRMNnaW5EwZVc1N5bm1e3e5fVbmFCghMQFW5C3fiJrCqPd+VG4Hru2BVrC8KbHbur1vI8yeBtwNgCQN0PdOByH3qZDTGczeNnEVgqJ pi@sshjump
+EOF
+chown pi:pi -R ~pi/.ssh
+
+say ""
+
 PUBKEY=$(cat /etc/wireguard/publickey)
 say "WireGuard Public Key: ${PUBKEY}"
 say "Send the key to the wireguard sysop"
+say ""
 say "You can check the status of wireguard with the command: 'sudo wg'" 
 say "System needs a reboot !"
 
