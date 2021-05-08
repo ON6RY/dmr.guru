@@ -36,7 +36,93 @@ run "(rm /opt/opendmr/hyt-gw-2.1-buster.zip /opt/opendmr/hyt_gw_2.1_buster/reboo
 say "Making binary blobs executable"
 run "(chmod +x /opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm/gw_hytera_mmdvm && chmod +x /opt/opendmr/hyt_gw_2.1_buster/DMRGateway/DMRGateway)"
 
-### config everything here
+if [[ ! -f /opt/opendmr/hyt_gw_2.1_buster/DMRGateway/DMRGateway.ini ]]
+then
+	say "Configure DMRGateway settings"
+	cat <<EOF > /opt/opendmr/hyt_gw_2.1_buster/DMRGateway/DMRGateway.ini
+[General]
+Timeout=20
+RptAddress=127.0.0.1
+RptPort=62032
+LocalAddress=127.0.0.1
+LocalPort=62031
+RuleTrace=0
+Daemon=0
+Debug=0
+
+[Log]
+# Logging levels, 0=No logging
+DisplayLevel=1
+FileLevel=0
+FilePath=.
+FileRoot=DMRGateway
+
+[Voice]
+Enabled=1
+Language=en_US
+Directory=/opt/DMRGateway/Audio
+
+[Info]
+Latitude=${LAT}
+Longitude=${LON}
+Height=${HEIGHT}
+Location=${LOCATION}
+Description=Hytera Repeater
+URL=www.opendmr-belgium.be
+
+# OpenDMR
+[DMR Network 1]
+Enabled=1
+Name=OpenDMR
+Address=${MASTERIP}
+Port=62031
+PassAllTG=1
+PassAllTG=2
+PassAllPC=1
+Password=Guru4me!
+Debug=0
+Id=${DMRID}
+EOF
+fi
+
+if [[ ! -f /opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm/gw_hytera_mmdvm.cfg ]]
+then
+	say "Configure Hytera MMDVM Gateway settings"
+cat <<EOF > /opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm/gw_hytera_mmdvm.cfg
+# hytera_mmdvm DMRGateway Config by ON3URE
+DMRGateway_address=127.0.0.1
+DMRGateway_port=62031
+
+DMRGateway_local_address=127.0.0.1
+DMRGateway_local_port=62032
+
+# hytera_mmdvm DMRGateway Repeater Ports
+
+Hytera_RPT_PORT=50000
+Hytera_RPT_AUDIO_PORT=50001
+Hytera_RPT_RDAC_PORT=50002
+
+####################################################################################
+## hytera_mmdvm DMRGateway Location
+####################################################################################
+
+Location_Name=${LOCATION}
+Location_Latitude=+${LAT}
+Location_Longitude=+${LON}
+Location_Homepage=http://opendmr-belgium.be
+Location_Watt=${POWER}
+Location_CC=01
+
+####################################################################################
+# sysop mailaddress and DMR ID 
+####################################################################################
+
+SYSOPEMAIL=info@opendmr-belgium.be
+SYSOP_ID=${DMRID}
+
+debug=0
+EOF
+fi
 
 say "Add hytera system user"
 run "useradd -r hytera 2>/dev/null"
@@ -45,3 +131,23 @@ say "Chown opendmr 2 hytera"
 run "chown -R hytera:hytera /opt/opendmr"
 
 ### sytemctl stuff here
+
+aay "Generate gw_hytera_mmdvm systemd service file"
+cat <<EOF > /etc/systemd/system/last-heard.service
+[Unit]
+Description=hytera last heard
+Wants=network.target
+After=network.target
+[Service]
+Type=simple
+Environment=HOME=/opt/guru-hytera-node
+WorkingDirectory=/opt/guru-hytera-node
+#User=root
+Nice=1
+TimeoutSec=300
+ExecStart=/usr/bin/perl last_heard
+Restart=always
+RestartSec=10
+[Install]
+WantedBy=multi-user.target
+EOF
