@@ -27,6 +27,9 @@ rungnomon "pip3 install scapy dmr_utils3 easysnmp"
 say "Install Netfilter MMDVM MiM UDP packet patcher"
 run "mkdir -p /opt/opendmr/bin && curl -sL https://git.io/J3Qe6 > /opt/opendmr/bin/netfilter_mmdvm.py && chmod +x /opt/opendmr/bin/netfilter_mmdvm.py"
 
+say "Cleanup old install"
+run "rm -fr /opt/opendmr/*"
+
 say "Install binary blobs"
 run "(cd /opt/opendmr/ && wget https://github.com/on3ure/dmr.guru/raw/master/hyt-gw-2.1-buster.zip && unzip hyt-gw-2.1-buster.zip)"
 
