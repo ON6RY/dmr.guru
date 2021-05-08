@@ -198,15 +198,15 @@ RestartSec=300
 WantedBy=multi-user.target
 EOF
 
-run "systemctl deamon reload"
+run "systemctl deamon-reload"
 
 run "systemctl enable dmrgateway"
 run "systemctl restart dmrgateway"
 
 run "systemctl enable gw_hytera_mmdvm"
-run "systemctl resatrt gw_hytera_mmdvm"
+run "systemctl restart gw_hytera_mmdvm"
 
 run "systemctl enable netfilter_mmdvm"
-run "systemctl resatrt netfilter_mmdvm"
+run "systemctl restart netfilter_mmdvm"
 
 say "done !"
