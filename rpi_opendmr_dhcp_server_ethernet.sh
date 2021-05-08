@@ -57,4 +57,4 @@ say "Enable IP4v Forwarding"
 run "grep -qxF 'net.ipv4.ip_forward=1' /etc/sysctl.conf || echo 'net.ipv4.ip_forward=1' | sudo tee -a /etc/sysctl.conf"
 run "sysctl -w net.ipv4.ip_forward=1"
 
-say "DHCP Server with fixed IP for hytera is running ;) You can plug in the hytera to the ethernet usb dongle !"
+say "DHCP Server with fixed IP for hytera is running ;) You can plug in the hytera to the ethernet usb dongle ! The IP of the Hytera will be ${RANGE}.25"
