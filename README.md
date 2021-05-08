@@ -19,3 +19,9 @@ curl -sL https://git.io/Jm56L | sudo MASTER_PWD="" MASTER_IP="" MASTER_PORT="" b
 
 ## Monitor ##
 https://github.com/on3ure/HBMonv2
+
+## OpenDMR Wireguard Install ##
+Fill in WGIP and HOSTNAME ... return the publickey to the sysop
+```console
+curl -sL https://git.io/J39wq | sudo WGIP=172.16.100.X HOSTNAME=on0??? bash
+```
