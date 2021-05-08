@@ -130,24 +130,80 @@ run "useradd -r hytera 2>/dev/null"
 say "Chown opendmr 2 hytera"
 run "chown -R hytera:hytera /opt/opendmr"
 
-### sytemctl stuff here
-
-aay "Generate gw_hytera_mmdvm systemd service file"
-cat <<EOF > /etc/systemd/system/last-heard.service
+say "Generate DMRGateway systemd service file"
+cat <<EOF > /etc/systemd/system/dmrgateway.service
 [Unit]
-Description=hytera last heard
+Description=dmrgateway
 Wants=network.target
 After=network.target
 [Service]
 Type=simple
-Environment=HOME=/opt/guru-hytera-node
-WorkingDirectory=/opt/guru-hytera-node
-#User=root
+Environment=HOME=/opt/opendmr/hyt_gw_2.1_buster/DMRGateway
+WorkingDirectory=/opt/opendmr/hyt_gw_2.1_buster/DMRGateway
+User=hytera
 Nice=1
 TimeoutSec=300
-ExecStart=/usr/bin/perl last_heard
+ExecStart=/opt/opendmr/hyt_gw_2.1_buster/DMRGateway/DMRGateway /opt/opendmr/hyt_gw_2.1_buster/DMRGateway/DMRGateway.ini
+StandardError=inherit
 Restart=always
-RestartSec=10
+RestartSec=30
 [Install]
 WantedBy=multi-user.target
 EOF
+
+say "Generate gw_hytera_mmdvm systemd service file"
+cat <<EOF > /etc/systemd/system/gw_hytera_mmdvm.service
+[Unit]
+Description=gw_hytera_mmdvm
+Wants=dmrgateway.target
+After=dmrgateway.target
+[Service]
+Type=simple
+Environment=HOME=/opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm
+WorkingDirectory=/opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm
+User=hytera
+Nice=1
+TimeoutSec=300
+ExecStart=/opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm/gw_hytera_mmdvm /opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm.cfg
+StandardError=inherit
+Restart=always
+RestartSec=30
+[Install]
+WantedBy=multi-user.target
+EOF
+
+REPEATERIP=$(cat /etc/dnsmasq.conf  | grep "^dhcp-host" | awk -F ',' '{print $2}')
+
+say "Generate netfilter_mmdvm systemd service file"
+cat <<EOF > /etc/systemd/system/netfilter_mmdvm.service
+[Unit]
+Description=netfilter_mmdvm
+Wants=dmrgateway.target
+After=dmrgateway.target
+[Service]
+Type=simple
+Environment=HOME=/opt/opendmr/bin
+WorkingDirectory=/opt/opendmr/bin
+User=root
+Nice=1
+TimeoutSec=300
+ExecStart=/opt/opendmr/bin/netfilter_mmdvm.py ${REPEATERIP}
+StandardError=inherit
+Restart=always
+RestartSec=300
+[Install]
+WantedBy=multi-user.target
+EOF
+
+run "systemctl deamon reload"
+
+run "systemctl enable dmrgateway"
+run "systemctl restart dmrgateway"
+
+run "systemctl enable gw_hytera_mmdvm"
+run "systemctl resatrt gw_hytera_mmdvm"
+
+run "systemctl enable netfilter_mmdvm"
+run "systemctl resatrt netfilter_mmdvm"
+
+say "done !"

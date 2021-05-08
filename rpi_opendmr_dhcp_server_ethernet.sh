@@ -39,7 +39,7 @@ RANGE=$(echo ${SUBNET} | perl -pe 's/\.[0-9]*$//g')
 MYMAC=$(echo ${MAC} | tr '[:upper:]' '[:lower:]')
 
 say "Configure dnsmasq"
-grep -qxF 'interface=eth1' /etc/dnsmasq.conf || cat <<EOF >> /etc/dnsmasq.conf
+grep -q '^interface=eth1' /etc/dnsmasq.conf || cat <<EOF >> /etc/dnsmasq.conf
 
 ### OpenDMR Config ON3URE ###
 interface=eth1 # Listening interface
