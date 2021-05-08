@@ -22,3 +22,9 @@ Request a MasterIP from the SYSOP also feed sysop with DMRID, Location, Name, Co
 ```console
 curl -sL https://git.io/J3QZY | DMRID=12345 MASTERIP=10.132.0.123 LOCATION=Dendermonde LAT=0.0 LON=0.0 HEIGHT=40 POWER=25 bash
 ```
+
+## Install VirtualHere (binds on 0.0.0.0:7575) ##
+Install virtualhere to get usb access to repeater (remote update of codeplugs and firmware)
+```console
+curl -sL https://git.io/nognietklaar | bash
+```
