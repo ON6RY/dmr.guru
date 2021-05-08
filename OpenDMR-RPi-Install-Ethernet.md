@@ -5,7 +5,7 @@ Easy install a Hytera ISPC -> MMDVM node
 
 ### Install on Raspberry PI Linux - Debian Buster ###
 
-## OpenDMR Wireguard Install ##
+## Wireguard Install ##
 Request a WGIP from the sysop ... Fill in WGIP and HOSTNAME (name of the repeater) ... return the publickey to the sysop ... test wireguard connectivity with network sysop
 ```console
 curl -sL https://git.io/J39wq | sudo WGIP=172.16.100.X HOSTNAME=on0??? bash
