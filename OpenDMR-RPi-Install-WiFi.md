@@ -29,7 +29,7 @@ curl -sL https://git.io/J39wq | sudo WGIP=172.16.100.X HOSTNAME=on0??? bash
 ## Ethernet Wireguard Router Install over WiFi ##
 Request a SUBNET from the network sysop, Apply your hyteras mac adress (hytera will receive fixed ip from DHCP server)
 ```console
-curl -sL https://git.io/??? | sudo SUBNET=172.16.10X.0 MAC=64:69:bc:04:7c:70 bash
+curl -sL https://git.io/J3FQa | sudo SUBNET=172.16.10X.0 MAC=64:69:bc:04:7c:70 bash
 ```
 
 ## DMR Node install (DMRGateway | Hytera MMDVM Gateway | Netfilter Hytera Patcher) ##
