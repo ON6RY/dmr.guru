@@ -7,7 +7,7 @@ Easy install a Hytera ISPC -> MMDVM node
 
 ## Burn a buster lite image to an sd card. After burning mount the SD card and put 2 files on the boot partitition. ##
 - an empty file called ssh 
-- a file called wpa_supplicant.conf
+- a file called wpa_supplicant.conf with following content:
 
 ```console
 country=BE
