@@ -51,10 +51,10 @@ run "systemctl restart virtualhere"
 
 say "reloading virtualhere to force dump config"
 
-run "systemctl restart virtualhere"
+run "sleep 20 && systemctl restart virtualhere"
 
 say "done ... virtualhere config is @ /opt/etc/virtualhere/settings.ini"
 say "current settings:"
-cat /opt/etc/virtualhere/settings.ini
+cat /opt/etc/virtualhere/config.ini
 
 say "! before changes to config, first systemctl stop virtualhere !"
