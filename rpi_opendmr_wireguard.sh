@@ -44,8 +44,9 @@ Endpoint = 104.199.103.239:51820
 
 PersistentKeepalive = 15
 EOF
-systemctl enable wg-quick@wg0
-systemctl start wg-quick@wg0
+run "systemctl deamon-reload"
+run "systemctl enable wg-quick@wg0"
+run "systemctl restart wg-quick@wg0"
 fi
 
 say "Modify hostname to ${HOSTNAME}"

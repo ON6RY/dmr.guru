@@ -50,8 +50,9 @@ dhcp-host=${MYMAC},${RANGE}.25
 listen-address=${RANGE}.1
 EOF
 
+run "systemctl deamon-reload"
 run "systemctl enable dnsmasq"
-run "systemctl start dnsmasq"
+run "systemctl restart dnsmasq"
 
 say "Enable IP4v Forwarding"
 run "grep -qxF 'net.ipv4.ip_forward=1' /etc/sysctl.conf || echo 'net.ipv4.ip_forward=1' | sudo tee -a /etc/sysctl.conf"
