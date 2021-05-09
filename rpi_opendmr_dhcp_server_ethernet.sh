@@ -50,7 +50,7 @@ dhcp-host=${MYMAC},${RANGE}.25
 listen-address=${RANGE}.1
 EOF
 
-run "systemctl deamon-reload"
+run "systemctl daemon-reload"
 run "systemctl enable dnsmasq"
 run "systemctl restart dnsmasq"
 

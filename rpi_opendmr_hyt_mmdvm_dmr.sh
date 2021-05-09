@@ -198,7 +198,7 @@ RestartSec=300
 WantedBy=multi-user.target
 EOF
 
-run "systemctl deamon-reload"
+run "systemctl daemon-reload"
 
 run "systemctl enable dmrgateway"
 run "systemctl restart dmrgateway"

@@ -44,7 +44,7 @@ Endpoint = 104.199.103.239:51820
 
 PersistentKeepalive = 15
 EOF
-run "systemctl deamon-reload"
+run "systemctl daemon-reload"
 run "systemctl enable wg-quick@wg0"
 run "systemctl restart wg-quick@wg0"
 fi

@@ -45,7 +45,7 @@ Type=idle
 WantedBy=multi-user.target
 EOF
 
-run "systemctl deamon-reload"
+run "systemctl daemon-reload"
 run "systemctl enable virtualhere"
 run "systemctl restart virtualhere"
 
