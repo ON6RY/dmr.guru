@@ -55,6 +55,6 @@ run "systemctl restart virtualhere"
 
 say "done ... virtualhere config is @ /etc/virtualhere/settings.ini"
 say "current settings:"
-cat /etc/virtualhere/settings.ini
+cat /opt/etc/virtualhere/settings.ini
 
 say "! before changes to config, first systemctl stop virtualhere !"
