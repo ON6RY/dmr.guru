@@ -53,7 +53,7 @@ say "reloading virtualhere to force dump config"
 
 run "systemctl restart virtualhere"
 
-say "done ... virtualhere config is @ /etc/virtualhere/settings.ini"
+say "done ... virtualhere config is @ /opt/etc/virtualhere/settings.ini"
 say "current settings:"
 cat /opt/etc/virtualhere/settings.ini
 
