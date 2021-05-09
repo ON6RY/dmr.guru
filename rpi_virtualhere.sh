@@ -29,7 +29,7 @@ run "apt -y update && apt -y full-upgrade && apt -y install git npm python3-pip 
 run "npm --loglevel=error install -g gnomon"
 
 say "Install VirtualHere"
-run "(cd /usr/bin && wget https://virtualhere.com/sites/default/files/usbserver/vhusbdarm && chmod a+x vhusbdarm && mkdir -p /etc/virtualhere)"
+run "(mkdir -p /opt/bin && cd /opt/bin && rm -f vhusbdarm && wget https://virtualhere.com/sites/default/files/usbserver/vhusbdarm && chmod a+x vhusbdarm && mkdir -p /opt/etc/virtualhere)"
 
 say "Install Service file"
 cat <<EOF > /etc/systemd/system/virtualhere.service
@@ -39,7 +39,7 @@ Requires=networking.service
 After=networking.service
 [Service]
 ExecStartPre=/bin/sh -c 'logger VirtualHere settling...;sleep 1s;logger VirtualHere settled'
-ExecStart=/usr/bin/vhusbdarm -c /etc/virtualhere/config.ini
+ExecStart=/opt/bin/vhusbdarm -c /opt/etc/virtualhere/config.ini
 Type=idle
 [Install]
 WantedBy=multi-user.target
