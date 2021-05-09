@@ -19,14 +19,14 @@ say () {
 }
 
 say "Disabling Ethernet"
-run "grep -qxF 'dtoverlay=disable-wifi' /boot/config.txt || echo 'dtoverlay=disable-wifi' | sudo tee -a /boot/config.txt"
+run "grep -qxF 'dtoverlay=disable-wifi' /boot/config.txt || echo 'dtoverlay=disable-wifi' | tee -a /boot/config.txt"
 
 say "Disabling Bluetooth"
-run "grep -qxF 'dtoverlay=disable-bt' /boot/config.txt || echo 'dtoverlay=disable-bt' | sudo tee -a /boot/config.txt"
+run "grep -qxF 'dtoverlay=disable-bt' /boot/config.txt || echo 'dtoverlay=disable-bt' | tee -a /boot/config.txt"
 run "systemctl disable hciuart"
 
 say "Enabling Hardware Watchdog"
-run "grep -qxF 'dtoverlay=pi3-disable-bt' /boot/config.txt || echo 'dtoverlay=pi3-disable-bt' | sudo tee -a /boot/config.txt"
+run "grep -qxF 'dtoverlay=pi3-disable-bt' /boot/config.txt || echo 'dtoverlay=pi3-disable-bt' | tee -a /boot/config.txt"
 run "perl -i -pe 's/^#RuntimeWatchdogSec=0/RuntimeWatchdogSec=10s/g' /etc/systemd/system.conf"
 run "perl -i -pe 's/^#ShutdownWatchdogSec=10min/ShutdownWatchdogSec=10min/g' /etc/systemd/system.conf"
 
@@ -55,7 +55,7 @@ run "systemctl enable dnsmasq"
 run "systemctl restart dnsmasq"
 
 say "Enable IP4v Forwarding"
-run "grep -qxF 'net.ipv4.ip_forward=1' /etc/sysctl.conf || echo 'net.ipv4.ip_forward=1' | sudo tee -a /etc/sysctl.conf"
+run "grep -qxF 'net.ipv4.ip_forward=1' /etc/sysctl.conf || echo 'net.ipv4.ip_forward=1' | tee -a /etc/sysctl.conf"
 run "sysctl -w net.ipv4.ip_forward=1"
 
 say "DHCP Server with fixed IP for hytera is running ;) You can plug in the hytera to the ethernet usb dongle ! The IP of the Hytera will be ${RANGE}.25"
