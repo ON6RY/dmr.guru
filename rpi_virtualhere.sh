@@ -49,7 +49,12 @@ run "systemctl daemon-reload"
 run "systemctl enable virtualhere"
 run "systemctl restart virtualhere"
 
+say "reloading virtualhere to force dump config"
+
+run "systemctl restart virtualhere"
+
 say "done ... virtualhere config is @ /etc/virtualhere/settings.ini"
 say "current settings:"
 cat /etc/virtualhere/settings.ini
 
+say "! before changes to config, first systemctl stop virtualhere !"
