@@ -20,7 +20,7 @@ say () {
 
 
 say "Installing Prerequisites"
-run "apt -y update && apt -y install build-essential python3-dev libsnmp-dev wget unzip libnfnetlink-dev"
+run "apt -y update && apt -y install build-essential python3-dev libsnmp-dev wget unzip libnfnetlink-dev libnetfilter-queue-dev"
 rungnomon "pip3 install -U git+https://github.com/kti/python-netfilterqueue"
 rungnomon "pip3 install scapy dmr_utils3 easysnmp"
 
