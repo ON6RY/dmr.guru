@@ -167,7 +167,7 @@ WorkingDirectory=/opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm
 User=hytera
 Nice=1
 TimeoutSec=300
-ExecStart=/opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm/gw_hytera_mmdvm /opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm.cfg
+ExecStart=/usr/bin/screen -L -DmS hytera bash -c "/opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm/gw_hytera_mmdvm /opt/opendmr/hyt_gw_2.1_buster/gw_hytera_mmdvm/gw_hytera_mmdvm.cfg"
 StandardError=inherit
 Restart=always
 RestartSec=30
@@ -195,7 +195,7 @@ TimeoutSec=300
 ExecStart=/opt/opendmr/bin/netfilter_mmdvm.py ${REPEATERIP}
 StandardError=inherit
 Restart=always
-RestartSec=300
+RestartSec=30
 [Install]
 WantedBy=multi-user.target
 EOF
