@@ -36,7 +36,11 @@ RANGE=$(echo ${SUBNET} | perl -pe 's/\.[0-9]*$//g')
 MYMAC=$(echo ${MAC} | tr '[:upper:]' '[:lower:]')
 
 say "Disable eth0 in dhcpcd"
-grep -q '^denyinterfaces eth0' /etc/dhcpcd.conf || echo 'denyinterfaces eth0' | tee -a /etc/dhcpcd.conf
+grep -q '^interface eth0' /etc/dhcpcd.conf || cat <<EOF >> /etc/dhcpcd.conf
+
+interface eth0
+static ip_address=${RANGE}.1/24
+EOF
 
 say "Configure dnsmasq"
 grep -q '^interface=eth0' /etc/dnsmasq.conf || cat <<EOF >> /etc/dnsmasq.conf

@@ -187,6 +187,8 @@ After=dmrgateway.target
 Type=simple
 Environment=HOME=/opt/opendmr/bin
 WorkingDirectory=/opt/opendmr/bin
+StandardOutput=null
+StandardError=null
 User=root
 Nice=1
 TimeoutSec=300
