@@ -30,7 +30,6 @@ run "npm --loglevel=error install -g gnomon"
 
 say "Install VirtualHere"
 run "(mkdir -p /opt/bin && cd /opt/bin && rm -f vhusbdarm && wget https://virtualhere.com/sites/default/files/usbserver/vhusbdarm && chmod a+x vhusbdarm && mkdir -p /opt/etc/virtualhere)"
-run "grep -qxF 'ServerName=$(hostname)' /opt/etc/virtualhere/config.ini || echo 'ServerName=$(hostname)' | tee -a /opt/etc/virtualhere/config.ini"
 
 say "Install Service file"
 cat <<EOF > /etc/systemd/system/virtualhere.service
@@ -52,7 +51,9 @@ run "systemctl restart virtualhere"
 
 say "reloading virtualhere to force dump config"
 
-run "sleep 20 && systemctl restart virtualhere"
+run "sleep 20 && systemctl stop virtualhere"
+run "grep -qxF 'ServerName=$(hostname)' /opt/etc/virtualhere/config.ini || echo 'ServerName=$(hostname)' | tee -a /opt/etc/virtualhere/config.ini"
+run "systemctl restart virtualhere"
 
 say "done ... virtualhere config is @ /opt/etc/virtualhere/settings.ini"
 say "current settings:"
