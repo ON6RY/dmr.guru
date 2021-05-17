@@ -35,7 +35,7 @@ run "npm --loglevel=error install -g gnomon"
 RANGE=$(echo ${SUBNET} | perl -pe 's/\.[0-9]*$//g')
 MYMAC=$(echo ${MAC} | tr '[:upper:]' '[:lower:]')
 
-say "Disable eth0 in dhcpcd"
+say "Disable eth0 in dhcpcd and define static address"
 grep -q '^interface eth0' /etc/dhcpcd.conf || cat <<EOF >> /etc/dhcpcd.conf
 
 interface eth0

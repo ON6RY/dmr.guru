@@ -38,6 +38,13 @@ run "npm --loglevel=error install -g gnomon"
 RANGE=$(echo ${SUBNET} | perl -pe 's/\.[0-9]*$//g')
 MYMAC=$(echo ${MAC} | tr '[:upper:]' '[:lower:]')
 
+say "Disable eth1 in dhcpcd and define static address"
+grep -q '^interface eth1' /etc/dhcpcd.conf || cat <<EOF >> /etc/dhcpcd.conf
+
+interface eth1
+static ip_address=${RANGE}.1/24
+EOF
+
 say "Configure dnsmasq"
 grep -q '^interface=eth1' /etc/dnsmasq.conf || cat <<EOF >> /etc/dnsmasq.conf
 
