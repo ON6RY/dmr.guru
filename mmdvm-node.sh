@@ -133,7 +133,7 @@ SUB_ACL: DENY:1
 TGID_TS1_ACL: DENY:ALL
 TGID_TS2_ACL: PERMIT:206,2061,2062
 
-[$CALL}-LOCAL]
+[${CALL}-LOCAL]
 MODE: PEER
 ENABLED: True
 LOOSE: False
@@ -187,7 +187,7 @@ BRIDGES = {
     'ON0DIL-LOCAL': [
             {'SYSTEM': 'LOCAL',           'TS': 2, 'TGID': 9 , 'ACTIVE': True, 'TIMEOUT': 1440, 'TO_TYPE': 'NONE',  'ON': [], 'OFF': [], 'RESET': []},
             {'SYSTEM': 'REPEATER',        'TS': 2, 'TGID': 9 , 'ACTIVE': True, 'TIMEOUT': 1440, 'TO_TYPE': 'NONE',  'ON': [], 'OFF': [], 'RESET': []},
-            {'SYSTEM': 'ON0DIL-LOCAL',    'TS': 2, 'TGID': 9 , 'ACTIVE': True, 'TIMEOUT': 1440, 'TO_TYPE': 'NONE',  'ON': [], 'OFF': [], 'RESET': []}
+            {'SYSTEM': '${CALL}-LOCAL',    'TS': 2, 'TGID': 9 , 'ACTIVE': True, 'TIMEOUT': 1440, 'TO_TYPE': 'NONE',  'ON': [], 'OFF': [], 'RESET': []}
         ]
 }
 
