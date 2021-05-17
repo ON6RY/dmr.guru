@@ -33,6 +33,8 @@ run "git clone https://github.com/HBLink-org/hblink3.git"
 run "cd hblink3"
 rungnomon "python3 -m pip install -r requirements.txt --upgrade"
 
+IPADDR=$(hostname --ip-address)
+
 say "Generate hblink.cfg"
 cat <<EOF > hblink.cfg
 [GLOBAL]
@@ -89,7 +91,7 @@ ENABLED: True
 REPEAT: True
 MAX_PEERS: 1
 EXPORT_AMBE: False
-IP: ${INTERNALIP}
+IP: ${IPADDR}
 PORT: 62031
 PASSPHRASE: Guru4me!
 GROUP_HANGTIME: 0
@@ -131,14 +133,14 @@ SUB_ACL: DENY:1
 TGID_TS1_ACL: DENY:ALL
 TGID_TS2_ACL: PERMIT:206,2061,2062
 
-[ON0DIL-LOCAL]
+[$CALL}-LOCAL]
 MODE: PEER
 ENABLED: True
 LOOSE: False
 EXPORT_AMBE: False
 IP:
 PORT: 54002
-MASTER_IP: ${MASTERHSIP}
+MASTER_IP: ${MASTERIP}
 MASTER_PORT: ${MASTERHSPORT}
 PASSPHRASE: Guru4me!
 CALLSIGN: ${CALL}
