@@ -43,7 +43,7 @@ do
         fi
 done
 EOF
-chmod +x /opt/bin/blink.sh
+chmod +x /opt/bin/gpio.sh
 
 say "Install last10mins.sh"
 cat <<EOF > /opt/bin/last10min.sh
@@ -68,13 +68,14 @@ while read line;do
 done
 cat
 EOF
-chmod +x /opt/bin/last10mins.sh
+chmod +x /opt/bin/last10min.sh
 
 say "Install Service file"
 cat <<EOF > /etc/systemd/system/gpio_init.service
 [Unit]
 Description=GPIO Init
 Requires=gw_hytera_mmdvm.service
+User=root
 After=gw_hytera_mmdvm.service
 [Service]
 ExecStart=/opt/bin/gpio.sh
