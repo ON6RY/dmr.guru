@@ -1,2 +1,10 @@
 # ON0DIL
 curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0DIL DMRID=206301 LBIP=35.233.111.25 MASTERIP=10.132.0.6 MASTERHSPORT=50003 LOCATION=Dilbeek LAT=50.85008267 LON=4.26094383 HEIGHT=115 POWER=20 RX=431.66250 TX=439.26250 bash
+# ON0ODS
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0ODS DMRID=206108 LBIP=35.189.220.231 MASTERIP=10.132.0.6 MASTERHSPORT=50007 LOCATION=Oudenaarde LAT=50.83220691 LON=3.65463494 HEIGHT=111 POWER=15 RX=431.46250 TX=439.06250 bash
+# ON0DEN
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0DEN DMRID=206102 LBIP=34.78.245.70 MASTERIP=10.132.0.6 MASTERHSPORT=50000 LOCATION=Dendermonde LAT=51.03223314 LON=4.09435209 HEIGHT=58 POWER=15 RX=431.43750 TX=439.03750 bash
+# ON0OST
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0OST DMRID=206010 LBIP=34.78.161.167 MASTERIP=10.132.0.6 MASTERHSPORT=50002 LOCATION=Oostende LAT=51.22652970 LON=2.92268460 HEIGHT=103 POWER=1 RX=431.81250 TX=439.41250 bash
+# ON0GRC
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0GRC DMRID= LBIP= MASTERIP=10.132.0.6 MASTERHSPORT=50008 LOCATION=Gent LAT= LON= HEIGHT= POWER= RX= TX= bash
