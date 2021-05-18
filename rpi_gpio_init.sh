@@ -23,11 +23,11 @@ say "Install gpio.sh"
 cat <<EOF > /opt/bin/gpio.sh
 #!/bin/bash
 
-echo 21 > /sys/class/gpio/export > /dev/null 2>&1
+echo 21 > /sys/class/gpio/export 
 echo out > /sys/class/gpio/gpio21/direction
 echo 1 > /sys/class/gpio/gpio21/value
 
-echo 20 > /sys/class/gpio/export > /dev/null 2>&1
+echo 20 > /sys/class/gpio/export
 echo out > /sys/class/gpio/gpio20/direction
 
 touch /tmp/booting
