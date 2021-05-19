@@ -7,4 +7,12 @@ curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh 
 # ON0OST
 curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0OST DMRID=206010 LBIP=34.78.161.167 MASTERIP=10.132.0.6 MASTERHSPORT=50002 LOCATION=Oostende LAT=51.22652970 LON=2.92268460 HEIGHT=103 POWER=1 RX=431.81250 TX=439.41250 bash
 # ON0GRC
-curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0GRC DMRID= LBIP= MASTERIP=10.132.0.6 MASTERHSPORT=50008 LOCATION=Gent LAT= LON= HEIGHT= POWER= RX= TX= bash
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0GRC DMRID=206101 LBIP=??????? MASTERIP=10.132.0.6 MASTERHSPORT=50008 LOCATION=Gent LAT=51.04514703 LON=3.70152342 HEIGHT=85 POWER=25 RX=431.48750 TX=439.08750 bash
+# ON0GBN
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0GBN DMRID=206501 LBIP=34.76.16.73 MASTERIP=10.132.0.6 MASTERHSPORT=???? LOCATION=Flobecq LAT=50.76387933 LON=3.74464273 HEIGHT=210 POWER=25 RX=431.31250 TX=438.91250 bash
+# ON0GAL
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON0GAL DMRID=206310 LBIP=35.195.108.253 MASTERIP=10.132.0.6 MASTERHSPORT=???? LOCATION=Galmaarden LAT=50.77496154 LON=3.94891306 HEIGHT=112 POWER=10 RX=431.23750 TX=438.83750 bash
+# ON6RY
+curl -sL https://raw.githubusercontent.com/on3ure/dmr.guru/master/mmdvm-node.sh | sudo CALL=ON6RY DMRID=206169 LBIP=104.155.13.201 MASTERIP=10.132.0.6 MASTERHSPORT=???? LOCATION=Geraardsbergen LAT=50.78325378 LON=3.91308243 HEIGHT=51 POWER=1 RX=431.7625 TX=439.3625 bash
+
+
